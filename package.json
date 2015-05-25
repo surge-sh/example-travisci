@@ -1,0 +1,22 @@
+{
+  "name": "@surge/example-travis",
+  "version": "0.1.0",
+  "description": "An example using Travis CI for continuous deployment to Surge.",
+  "homepage": "https://surge.sh",
+  "author": "Kenneth Ormandy <kenneth@surge.sh> (http://kennethormandy.com)",
+  "contributors": [
+    "Kenneth Ormandy <kenneth@surge.sh> (http://kennethormandy.com)",
+    "Brock Whitten   <brock@surge.sh>   (http://sintaxi.com)"
+  ],
+  "license": "MIT",
+  "private": true,
+  "repository": "git@github.com:surge-sh/example-travis.git",
+  "keywords": [],
+  "devDependencies": {
+    "surge": "latest"
+  },
+  "scripts": {
+    "compile": "echo \"If you’re using a static site generator or other compilation step, you could run it here!\"",
+    "deploy": "npm run compile && surge --project ./ --domain example-travis.surge.sh"
+  }
+}
