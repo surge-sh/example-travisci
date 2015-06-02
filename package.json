@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "description": "An example using Travis CI for continuous deployment to Surge.",
   "homepage": "https://surge.sh",
+  "repository": "https://github.com/surge-sh/example-travisci.git",
+  "license": "MIT",
+  "private": true,
   "author": "Kenneth Ormandy <kenneth@surge.sh> (http://kennethormandy.com)",
   "contributors": [
     "Kenneth Ormandy <kenneth@surge.sh> (http://kennethormandy.com)",
     "Brock Whitten   <brock@surge.sh>   (http://sintaxi.com)"
   ],
-  "license": "MIT",
-  "private": true,
-  "repository": "git@github.com:surge-sh/example-travis.git",
-  "keywords": [],
+  "keywords": ["surge", "surge.sh", "example", "travis ci", "static"],
   "devDependencies": {
     "mocha": "2.2.5",
     "surge": "latest"
