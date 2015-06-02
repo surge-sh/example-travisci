@@ -1,4 +1,4 @@
-# Travis CI example [![Build Status](https://travis-ci.org/surge-sh/example-travis.svg?branch=master)](https://travis-ci.org/surge-sh/example-travis)
+# Travis CI example [![Build Status](https://travis-ci.org/surge-sh/example-travisci.svg?branch=master)](https://travis-ci.org/surge-sh/example-travisci)
 
 An example using [Travis CI](https://travis-ci.org) for continuous deployment to [Surge.sh](https://surge.sh).
 
