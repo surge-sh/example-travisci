@@ -66,6 +66,28 @@ Next, run this command to save Surge as a `devDependency`, so Travis CI will ins
 npm install --save-dev surge
 ```
 
+#### Double-check your tests
+
+If you needed to add a new `package.json` file, you’ll want to make one small change. It’s possible your initial build will fail if you don’t have any tests, or if you have the default test command in your `package.json`.
+
+You can add tests or just clear this out of your `package.json` file entirely, changing:
+
+```sh
+"scripts": {
+  "test": "echo \"Error: no test specified.\" && exit 1"
+}
+```
+
+…into:
+
+```sh
+"scripts": {
+  "test": "echo \"Error: no test specified.\""
+}
+```
+
+Commit this change, and push it to your repo. Now, even if you don’t have tests, Travis CI will be able to move onto the deployment command.
+
 The last step is to add a `.travis.yml` file to your project. Travis CI uses this
 
 > file in the root of your repository to learn about your project and how you want your builds to be executed. `.travis.yml` can be very minimalistic or have a lot of customization in it.
