@@ -19,6 +19,6 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "compile": "echo \"If you’re using a static site generator or other compilation step, you could run it here!\"",
-    "deploy": "$TRAVIS_PULL_REQUEST == 'false' && npm run compile && surge --project ./ --domain example-travis.surge.sh"
+    "deploy": "npm run compile && surge --project ./ --domain example-travis.surge.sh"
   }
 }
