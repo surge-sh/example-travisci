@@ -18,7 +18,6 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "compile": "echo \"If you’re using a static site generator or other compilation step, you could run it here!\"",
-    "deploy": "npm run compile && surge --project ./ --domain example-travis.surge.sh"
+    "compile": "echo \"If you’re using a static site generator or other compilation step, you could run it here!\""
   }
 }
