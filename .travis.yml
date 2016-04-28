@@ -1,6 +1,8 @@
 language: node_js
 node_js:
-  - "0.12"
+  - "node"
 
-after_success:
-  -  [[ "master" == $TRAVIS_BRANCH ]] && [[ false == $TRAVIS_PULL_REQUEST ]] && npm run deploy
+deploy:
+  provider: surge
+  project: ./static/
+  domain: example.surge.sh 
