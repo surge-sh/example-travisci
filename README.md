@@ -50,60 +50,64 @@ SURGE_TOKEN
 
 …and set it to your Surge token.
 
-### Push a `.travis.yml` file that will run the `surge` command
+### Make a `.travis.yml` file
 
-Travis CI machines won’t have Surge installed by default, so you also need to save Surge as a [development dependency] to your project. You can do this by creating a `package.json` file if you don’t have one already. Run the following command in your terminal to be walked through making this file (you can hit enter to accept the defaults):
+Make a new file called `.travis.yml` with the content
 
-```sh
-npm init
-```
-
-You will end up with a file that looks [something like this one](https://github.com/surge-sh/example-travisci/blob/master/package.json).
-
-Next, run this command to save Surge as a `devDependency`, so Travis CI will install it:
-
-```sh
-npm install --save-dev surge
-```
-
-#### Double-check your tests
-
-If you needed to add a new `package.json` file, you’ll want to make one small change. It’s possible your initial build will fail if you don’t have any tests, or if you have the default test command in your `package.json`.
-
-You can add tests or just clear this out of your `package.json` file entirely, changing:
-
-```sh
-"scripts": {
-  "test": "echo \"Error: no test specified.\" && exit 1"
-}
-```
-
-…into:
-
-```sh
-"scripts": {
-  "test": "echo \"Error: no test specified.\""
-}
-```
-
-Commit this change, and push it to your repo. Now, even if you don’t have tests, Travis CI will be able to move onto the deployment command.
-
-The last step is to add a `.travis.yml` file to your project. Travis CI uses this
-
-> file in the root of your repository to learn about your project and how you want your builds to be executed. `.travis.yml` can be very minimalistic or have a lot of customization in it.
-> <footer>Travis CI <cite>[.travis.yml file: what it is and how it is used](http://docs.travis-ci.com/user/build-configuration/#.travis.yml-file%3A-what-it-is-and-how-it-is-used)</cite></footer>
-
-Your `.travis.yml` file should loook like this:
-
-```yml
+```yaml
 language: node_js
 node_js:
-  - "0.12"
-after_success:
-  - surge --project ./path/to/your-project --domain your-project.surge.sh
+  - "node"
+
+deploy:
+  provider: surge
+  project: ./static/
+  domain: example.surge.sh  
 ```
 
-After you push you successfully push to your repository, Travis CI will run `surge`. Replace `./path/to/your-project` with the path to the source files in your repository, and `your-project.surge.sh` with the domain you’d like to publish to.
+- The language and node_js part can be changed to anything supported by Travis CI. 
+
+- If your project folder is the repo root you can avoid the the deploy option `project`
+ 
+- If you have a `CNAME` file with the name of the domain to publish in your project folder you can avoid the deploy option `domain` 
+
+
+
+### Generated content
+
+If you would like to deploy content thats generated during the Travis CI script run you have two options: 
+
+- A) generate it during the "script" step. A failed code execution will give a failed travis run
+- B) generate it at the "before_deploy" step. A failed code execution will still give a successful travis run
+
+If you use A) you must ask Travis to keep the generated files instead of resetting the repo before deploy by adding the `skip_cleanup`setting:
+
+```yaml
+deploy:
+  ... 
+  skip_cleanup: true
+```
+
+
+### Branches
+
+By default, Travis CI will only deploy from your `master` branch. You can specify what branch to deploy from with the deploy option `on`:
+
+```yaml
+deploy:
+  ...
+  on: myFavoriteSurgeBranch
+```
+
+To deploy from all branches set the `deploy->on` option `all_branches` to `true`
+
+```yaml
+deploy:
+  ...
+  on:
+    all_branches: true
+```
+
 
 There are more examples of what you can do with a `.travis.yml` file [directly from Travis CI](http://docs.travis-ci.com/user/languages/javascript-with-nodejs/).
 
